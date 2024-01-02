@@ -1,0 +1,235 @@
+.wp-sites-loader-card {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background: white;
+    padding: 1.5rem;
+}
+.wp-sites-loader-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1rem;
+    margin-right: 20px;
+}
+.wp-sites-loader-card{
+    text-align: center;
+}
+.wp-sites-loader-card h2 {
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Montagu Slab', serif;
+    line-height: 34px;
+}
+.wp-sites-loader-card p {
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Montagu Slab', serif;
+}
+@media  screen and (max-width: 992px) {
+
+}
+/*
+* Algo Site Loaders - Header
+*/
+.algo_site_loaders-header-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+    background: white;
+    color: white;
+    padding: 0rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /*border: 3px dashed #00b19c;*/
+}
+.algo_site_loaders-header-cards ul.header-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.algo_site_loaders-header-cards ul.header-menu li {
+    font-size: 18px;
+    margin-right: 1.2rem;
+    font-family: 'Montagu Slab', serif;
+}
+.algo_site_loaders-header-cards ul.header-menu li>a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Montagu Slab', serif;
+}
+.algo_site_loaders-header-cards ul.header-menu li>a:focus {
+    box-shadow: none;
+    outline: none;
+    color: black;
+    font-size: 20px;
+    text-decoration: underline;
+}
+.algo_site_loaders-header-cards >img.wp-sites-loader-logo {
+    margin-left: -1rem;
+    margin-bottom: -0.3rem;
+}
+
+/*
+*Loader
+*/
+.algo_site_loaders-content {
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border: 10px dashed #f3f3f3;
+    border-top: 10px solid #08c5d1;
+    width: 75px;
+    height: 75px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.wp-sites-loader-options-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1rem;
+    margin-right: 20px;
+}
+
+/*
+* Form CSS Code
+*/
+
+#wp-sites-loader1 {
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    top: 40%;
+    right: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border: 10px dashed #f3f3f3;
+    border-top: 10px solid #08c5d1;
+    width: 75px;
+    height: 75px;
+    animation: spin 1s linear infinite;
+}
+#wp-sites-loader2 {
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    top: 40%;
+    right: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border: 10px dotted #36c4d6;
+    border-top: 10px dotted #08c5d1;
+    width: 75px;
+    height: 75px;
+    animation: spin 1.3s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.wp-sites-loader-forms {
+    background: #ffffff9e;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.wp-sites-loader-forms label {
+    display: block;
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    font-family: 'Montagu Slab', serif;
+}
+.wp-sites-loader-forms .wp-sites-loader-selected {
+    display: block;
+    width: 100%;
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: 2px;
+    border: 1px solid;
+    margin: 2rem 0;
+}
+.wp-sites-loader-options-cards h1, .wp-sites-loaders-titles h1 {
+    text-align: center;
+    font-size: 24px;
+    line-height: 34px;
+    margin-bottom: 2rem;
+    font-family: 'Montagu Slab', serif;
+    font-weight: 500;
+    color: black;
+    border-bottom: 2px outset;
+} .wp-sites-loaders-titles h1{
+      margin-right: 20px;
+      padding-top: 2rem;
+  }
+.wp-sites-loader-forms button.wp-sites-loader-form-button {
+    display: block;
+    background: #08c5d1;
+    border: none;
+    padding: .5rem 2rem;
+    color: white;
+    font-size: 22px;
+    font-family: 'Montagu Slab', serif;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+.wp-sites-loader-save-message {
+    text-align: center;
+    font-size: 22px;
+    padding: 2rem 0;
+    color: green;
+    font-family: 'Montagu Slab', serif;
+    background: white;
+}
+
+/* All Loaders Div */
+
+#wp-sites-loader-all-1 {
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border: 10px dashed #f3f3f3;
+    border-top: 10px solid #08c5d1;
+    width: 75px;
+    height: 75px;
+    animation: spin 1s linear infinite;
+}
+#wp-sites-loader-all-2 {
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border: 10px dotted #36c4d6;
+    border-top: 10px dotted #08c5d1;
+    width: 75px;
+    height: 75px;
+    animation: spin 1.3s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.wp-sites-loader-all-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.wp-sites-loader-all-cards label {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Montagu Slab', serif;
+    color: green;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid;
+}

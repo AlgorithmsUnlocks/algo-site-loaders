@@ -99,6 +99,47 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     }
 
+    // function saveLoaderToDatabase() {
+    //     const selectedLoader = loaderTypeSelect.value;
+    //     const colorInput = document.getElementById('loaderColor');
+    //     const selectedColor = colorInput.value;
+    //
+    //     // Send an AJAX request to the server
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open('POST', ajaxurl, true);
+    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    //
+    //     xhr.onreadystatechange = function () {
+    //         if (xhr.readyState === XMLHttpRequest.DONE) {
+    //             if (xhr.status === 200) {
+    //                 const response = JSON.parse(xhr.responseText);
+    //                 if (response.success) {
+    //                     // Show success message or perform other actions upon successful save
+    //                     messageElement.innerText = response.data;
+    //                     messageElement.style.display = 'block';
+    //                     setTimeout(function () {
+    //                         messageElement.style.display = 'none';
+    //                     }, 3000);
+    //                 } else {
+    //                     // Show error message if save fails
+    //                     console.error('Error:', response.data);
+    //                 }
+    //             } else {
+    //                 console.error('Error:', xhr.status);
+    //             }
+    //         }
+    //     };
+    //
+    //     // Prepare data to send in the AJAX request
+    //     const data = new URLSearchParams();
+    //     data.append('action', 'save_loader_options');
+    //     data.append('selectedLoader', selectedLoader);
+    //     data.append('selectedColor', selectedColor);
+    //
+    //     // Send the AJAX request with the prepared data
+    //     xhr.send(data);
+    // }
+
     window.showLoader = function () {
         const selectedLoader = loaderTypeSelect.value;
         const colorInput = document.getElementById('loaderColor');
@@ -106,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         applyLoaderStyle(selectedLoader, selectedColor);
         showSelectedLoader(selectedLoader);
+        // saveLoaderToDatabase();
         saveLoader();
     };
 

@@ -15,29 +15,29 @@ document.addEventListener('DOMContentLoaded', function () {
         showSelectedLoader(savedLoader);
         loaderTypeSelect.value = savedLoader;
     }
-
     function showSelectedLoader(wpSitesloaderType) {
 
         loader1.style.display = 'none';
         loader2.style.display = 'none';
-        // wpSitesLoaderContainer.style.display = 'none';
+        wpSitesLoaderContainer.style.display = 'none';
 
 
         if (wpSitesloaderType === 'wp-sites-loader1') {
             loader1.style.display = 'block';
+            wpSitesLoaderContainer.style.display = 'block';
             setTimeout(function () {
                 loader1.style.display = 'none';
                 wpSitesLoaderContainer.style.display = 'none';
             },500);
         } else if (wpSitesloaderType === 'wp-sites-loader2') {
             loader2.style.display = 'block';
+            wpSitesLoaderContainer.style.display = 'block';
             setTimeout(function () {
                 loader2.style.display = 'none';
                 wpSitesLoaderContainer.style.display = 'none';
             },500);
         }
     }
-
     function saveLoader() {
         const selectedLoader = loaderTypeSelect.value;
         localStorage.setItem('selectedLoader', selectedLoader);

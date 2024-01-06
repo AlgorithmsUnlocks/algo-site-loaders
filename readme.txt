@@ -78,5 +78,3 @@ This version fixes a security related bug.  Upgrade immediately.
 2. Choose or upload your desired loader animation.
 3. Customize the loader's appearance and behavior settings.
 4. Save your changes.
-
-`<?php code(); ?>`

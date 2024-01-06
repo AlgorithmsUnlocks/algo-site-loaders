@@ -33,7 +33,12 @@
             <h1> Preview of the Loaders: <span id="wpSitesloaderName" style="color: #08c5d1; font-weight: 500"> </span></h1>
             <div id="wp-sites-loader1" class="" style="display: none;"> </div>
             <div id="wp-sites-loader2" class="" style="display: none;"> </div>
-            <div id="saveMessage" class="wp-sites-loader-save-message" style="display: none;"></div>
+            <div id="saveMessage" class="wp-sites-loader-save-message" style="display: block;"> Activated Loader:
+                <?php
+                $wpSiteLoaders = get_option('selected_loader');
+                echo $wpSiteLoaders;
+                ?>
+            </div>
         </div>
 
     </div>

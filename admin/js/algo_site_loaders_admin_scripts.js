@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadPluginContent();
 });
 
-
 /*
  * WP Sites Loader Container hide and show based on the selected loader -> Algo Unlocks
  */
@@ -54,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const colorInput = document.getElementById('loaderColor');
         colorInput.value = savedColor;
 
-        applyLoaderStyle(savedLoader, savedColor);
+        // applyLoaderStyle(savedLoader, savedColor);
+        applyLoaderStyle(savedLoader);
     }
 
     function showSelectedLoader(wpSitesloaderType) {
@@ -83,72 +83,55 @@ document.addEventListener('DOMContentLoaded', function () {
             // loader2.style.backgroundColor = color;
         }
     }
-
-    function saveLoader() {
+    function saveLoaderToDatabase() {
         const selectedLoader = loaderTypeSelect.value;
         const colorInput = document.getElementById('loaderColor');
         const selectedColor = colorInput.value;
 
-        localStorage.setItem('selectedLoader', selectedLoader);
-        localStorage.setItem('selectedColor', selectedColor);
+        // Send an AJAX request to the server
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', ajaxurl, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-        messageElement.innerText = 'Loader Saved Successfully!';
-        messageElement.style.display = 'block';
-        setTimeout(function () {
-            messageElement.style.display = 'none';
-        }, 3000);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // Show success message or perform other actions upon successful save
+                        messageElement.innerText = response.data;
+                        messageElement.style.display = 'block';
+                        setTimeout(function () {
+                            messageElement.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        console.error('Error:', response.data);
+                    }
+                } else {
+                    console.error('Error:', xhr.status);
+                }
+            }
+        };
+
+        // Prepare data to send in the AJAX request
+        const data = new URLSearchParams();
+        data.append('action', 'save_loader_options');
+        data.append('selectedLoader', selectedLoader);
+        data.append('selectedColor', selectedColor);
+
+        xhr.send(data);
     }
-
-    // function saveLoaderToDatabase() {
-    //     const selectedLoader = loaderTypeSelect.value;
-    //     const colorInput = document.getElementById('loaderColor');
-    //     const selectedColor = colorInput.value;
-    //
-    //     // Send an AJAX request to the server
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open('POST', ajaxurl, true);
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    //
-    //     xhr.onreadystatechange = function () {
-    //         if (xhr.readyState === XMLHttpRequest.DONE) {
-    //             if (xhr.status === 200) {
-    //                 const response = JSON.parse(xhr.responseText);
-    //                 if (response.success) {
-    //                     // Show success message or perform other actions upon successful save
-    //                     messageElement.innerText = response.data;
-    //                     messageElement.style.display = 'block';
-    //                     setTimeout(function () {
-    //                         messageElement.style.display = 'none';
-    //                     }, 3000);
-    //                 } else {
-    //                     // Show error message if save fails
-    //                     console.error('Error:', response.data);
-    //                 }
-    //             } else {
-    //                 console.error('Error:', xhr.status);
-    //             }
-    //         }
-    //     };
-    //
-    //     // Prepare data to send in the AJAX request
-    //     const data = new URLSearchParams();
-    //     data.append('action', 'save_loader_options');
-    //     data.append('selectedLoader', selectedLoader);
-    //     data.append('selectedColor', selectedColor);
-    //
-    //     // Send the AJAX request with the prepared data
-    //     xhr.send(data);
-    // }
 
     window.showLoader = function () {
         const selectedLoader = loaderTypeSelect.value;
         const colorInput = document.getElementById('loaderColor');
         const selectedColor = colorInput.value;
 
-        applyLoaderStyle(selectedLoader, selectedColor);
+        // applyLoaderStyle(selectedLoader, selectedColor);
+        applyLoaderStyle(selectedLoader);
         showSelectedLoader(selectedLoader);
-        // saveLoaderToDatabase();
-        saveLoader();
+        saveLoaderToDatabase();
+        // saveLoader();
     };
 
     loaderTypeSelect.addEventListener('change', function() {
@@ -156,9 +139,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const colorInput = document.getElementById('loaderColor');
         const selectedColor = colorInput.value;
 
-        applyLoaderStyle(selectedLoader, selectedColor);
+        // applyLoaderStyle(selectedLoader, selectedColor);
+        applyLoaderStyle(selectedLoader);
         showSelectedLoader(selectedLoader);
         // saveLoader();
+        // saveLoaderToDatabase();
     });
 
 });

@@ -50,15 +50,6 @@ $filter_name = 'plugin_action_links_' . plugin_basename(__FILE__);
 add_filter($filter_name, 'algo_site_loaders_add_settings_link');
 
 /*
- * Push HTML code to the Websites Front-end.
- */
-function algo_site_loaders_add_custom_html_after_body_open(): void
-{
-   include(plugin_dir_path(__FILE__).'pages/loader_html.php');
-}
-add_action('wp_body_open', 'algo_site_loaders_add_custom_html_after_body_open');
-
-/*
  * Load AJAX VIA PHP
  */
 add_action('wp_ajax_save_loader_to_database', 'algo_site_loaders_ajax_handler_function');
@@ -71,22 +62,31 @@ function algo_site_loaders_ajax_handler_function(): void
 
 /*
  * Save Loader to the Database option tables
+ * Add AJAX action for saving loader options
  */
-// Add AJAX action for saving loader options
 add_action('wp_ajax_save_loader_options', 'save_loader_options');
 function save_loader_options() {
     if (isset($_POST['selectedLoader']) || isset($_POST['selectedColor'])) {
         $selectedLoader = sanitize_text_field($_POST['selectedLoader']);
         $selectedColor = sanitize_text_field($_POST['selectedColor']);
 
-        // Update the options in the database
         update_option('selected_loader', $selectedLoader);
         update_option('selected_color', $selectedColor);
 
-        // Send a success response
-        wp_send_json_success('Loader options saved successfully.');
+        $response = 'Loader Save Successfully';
+        $status_code = 200;
+        wp_send_json_success($selectedLoader, $response, $status_code);
+
     } else {
-        // Send an error response if data is missing
         wp_send_json_error('Error: Missing data.');
     }
 }
+
+/*
+ * Fetch Loaders options
+ * Push HTML code to the Websites Front-end based on the users selected loaders
+ */
+function algo_site_loaders_push_custom_html_after_body_open():void {
+    include(plugin_dir_path(__FILE__).'pages/loader_html.php');
+}
+add_action('wp_body_open', 'algo_site_loaders_push_custom_html_after_body_open');

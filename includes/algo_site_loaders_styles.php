@@ -18,7 +18,22 @@ function algo_site_loaders_admin_styles($hook){
 }
 
 /*
- * Load CSS for Frontend single page or post
+ * Global Admin Panel Styles
+ */
+add_action("admin_enqueue_scripts","algo_site_loaders_admin_styles_global",10);
+function algo_site_loaders_admin_styles_global($hook){
+    wp_register_style(
+        "algo_site_loaders_admin_global",
+        ALGO_SITE_LOADERS."admin/css/global_styles_apply.css",
+        [],
+        time()
+    );
+    wp_enqueue_style("algo_site_loaders_admin_global");
+}
+
+
+/*
+ * Load CSS for Frontend all
  */
 
 add_action("wp_enqueue_scripts", "algo_site_loaders_frontend_styles");

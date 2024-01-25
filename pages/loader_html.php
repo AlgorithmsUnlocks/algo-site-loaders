@@ -5,10 +5,10 @@
 ?>
 
 <?php
-$loader = get_option('selected_loader');
+$loader = get_option('asl_selectedLoader');
 ?>
 <div class="wp-sites-loader-options-cards" id="wp-sites-loader-wrapper" style="display: none;">
-    <div id="<?php echo $loader; ?>" class="wp_site_loaders_display" style="display: none"></div>
+    <div id="<?php echo esc_attr($loader); ?>" class="wp_site_loaders_display" style="display: none"></div>
 </div>
 <script>
     const wpSiteLoadersWrapper = document.getElementById('wp-sites-loader-wrapper');

@@ -1,9 +1,7 @@
-<!-- Algo Site Loaders Dashboard Page -->
-
 <div class="wp-sites-loader-container">
 
     <?php
-    include_once (__DIR__.'/header.php');
+    include_once __DIR__ . '/header.php';
     ?>
 
     <div class="wp-sites-loader-options-wrapper">
@@ -35,8 +33,8 @@
             <div id="wp-sites-loader2" class="" style="display: none;"> </div>
             <div id="saveMessage" class="wp-sites-loader-save-message" style="display: block;"> Activated Loader:
                 <?php
-                $wpSiteLoaders = get_option('selected_loader');
-                echo $wpSiteLoaders;
+                $wpSiteLoaders = get_option('asl_selectedLoader');
+                echo esc_html($wpSiteLoaders);
                 ?>
             </div>
         </div>
@@ -56,7 +54,5 @@
             <label> Loader 2 </label>
             <div id="wp-sites-loader-all-2" class="" style="display: block;"> </div>
         </div>
-
     </div>
-
 </div>

@@ -4,26 +4,24 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     function showLoader() {
-        var loader = document.getElementById('plugin-loader');
-        var wp_main_container = document.querySelector('.wp-sites-loader-container');
+        const loader = document.getElementById('plugin-loader');
+        const wp_main_container = document.querySelector('.wp-sites-loader-container');
         if (loader) {
             loader.style.display = 'block';
-            // wp_main_container.style.backgroundColor = "red";
         }
     }
     function hideLoader() {
-        var loader = document.getElementById('plugin-loader');
-        var wp_main_container = document.querySelector('.wp-sites-loader-container');
+        const loader = document.getElementById('plugin-loader');
+        const wp_main_container = document.querySelector('.wp-sites-loader-container');
         if (loader) {
             loader.style.display = 'none';
-            // wp_main_container.style.backgroundColor = "transparent";
         }
     }
     function loadPluginContent() {
         showLoader();
         setTimeout(function() {
             hideLoader();
-            var content = document.getElementById('plugin-content');
+            const content = document.getElementById('plugin-content');
             if (content) {
                 content.innerHTML = "<p>Loaded content</p>";
             }
@@ -43,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const messageElement = document.getElementById('saveMessage');
     const wpSitesloaderName = document.getElementById('wpSitesloaderName');
 
-    const savedLoader = localStorage.getItem('selectedLoader');
-    const savedColor = localStorage.getItem('selectedColor');
+    const savedLoader = localStorage.getItem('asl_selectedLoader');
+    const savedColor = localStorage.getItem('asl_selectedColor');
 
     if (savedLoader && savedColor) {
         showSelectedLoader(savedLoader);
@@ -116,8 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Prepare data to send in the AJAX request
         const data = new URLSearchParams();
         data.append('action', 'save_loader_options');
-        data.append('selectedLoader', selectedLoader);
-        data.append('selectedColor', selectedColor);
+        data.append('asl_selectedLoader', selectedLoader);
+        data.append('asl_selectedColor', selectedColor);
 
         xhr.send(data);
     }
@@ -127,23 +125,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const colorInput = document.getElementById('loaderColor');
         const selectedColor = colorInput.value;
 
-        // applyLoaderStyle(selectedLoader, selectedColor);
         applyLoaderStyle(selectedLoader);
         showSelectedLoader(selectedLoader);
         saveLoaderToDatabase();
-        // saveLoader();
     };
 
-    loaderTypeSelect.addEventListener('change', function() {
-        const selectedLoader = loaderTypeSelect.value;
-        const colorInput = document.getElementById('loaderColor');
-        const selectedColor = colorInput.value;
+    if (loaderTypeSelect) {
 
-        // applyLoaderStyle(selectedLoader, selectedColor);
-        applyLoaderStyle(selectedLoader);
-        showSelectedLoader(selectedLoader);
-        // saveLoader();
-        // saveLoaderToDatabase();
-    });
+        loaderTypeSelect.addEventListener('change', function() {
+            const selectedLoader = loaderTypeSelect.value;
+            const colorInput = document.getElementById('loaderColor');
+            const selectedColor = colorInput.value;
+
+            // applyLoaderStyle(selectedLoader, selectedColor);
+            applyLoaderStyle(selectedLoader);
+            showSelectedLoader(selectedLoader);
+        });
+    }
 
 });

@@ -54,8 +54,8 @@ function algo_site_loaders_add_settings_link($links) {
  * Save Loader to the Database option tables
  * Add AJAX action for saving loader options
  */
-add_action('wp_ajax_save_loader_options', 'algo_site_loaders_save_options');
-function algo_site_loaders_save_options(): void
+add_action('wp_ajax_save_loader_options', 'algo_site_save_loader_options');
+function algo_site_save_loader_options(): void
 {
     if (isset($_POST['asl_selectedLoader']) || isset($_POST['asl_selectedColor'])) {
 
@@ -71,7 +71,6 @@ function algo_site_loaders_save_options(): void
 
     }
 }
-
 
 /*
  * Fetch Loaders options

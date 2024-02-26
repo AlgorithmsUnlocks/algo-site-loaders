@@ -3,6 +3,7 @@
 /*
  * Load CSS for plugins admin panel (specific menu page)
  */
+if (!defined('ABSPATH')) exit();
 
 add_action("admin_enqueue_scripts","algo_site_loaders_admin_styles",10);
 function algo_site_loaders_admin_styles($hook){

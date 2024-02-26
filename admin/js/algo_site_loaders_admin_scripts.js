@@ -117,6 +117,10 @@ document.addEventListener('DOMContentLoaded', function () {
         data.append('asl_selectedLoader', selectedLoader);
         data.append('asl_selectedColor', selectedColor);
 
+        // Add nonce
+        const nonce = document.querySelector('.loader-nonce').getAttribute('data-nonce');
+        data.append('asl_nonce', nonce);
+
         xhr.send(data);
     }
 

@@ -2,6 +2,8 @@
 Algo Site Loaders Header Part
 Global Loader set for the plugins
 -->
+<?php if (!defined('ABSPATH')) exit();  ?>
+
 <div class="algo_site_loaders-content" id="plugin-loader"></div>
 
 <div class="algo_site_loaders-header-wrapper">
@@ -21,3 +23,5 @@ Global Loader set for the plugins
     </div>
 
 </div>
+<span class="loader-nonce" data-nonce="<?php echo wp_create_nonce('algo_site_loaders_nonce'); ?>"></span>
+

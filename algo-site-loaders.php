@@ -40,12 +40,17 @@ function algo_site_loaders_add_settings_link($links) {
     $settings_text = esc_html__('Dashboard', 'algo_site_loaders');
     $settings_link = '<a href="' . $settings_url . '">' . $settings_text . '</a>';
 
+    // Create nonce
+    $nonce = wp_create_nonce('algo_site_loaders_nonce');
+    echo "<script> console.log($nonce); </script>";
+
+
     $deactivate_key = array_search('deactivate', array_keys($links));
 
     if ($deactivate_key !== false) {
-        array_splice($links, $deactivate_key, 0, $settings_link);
+        array_splice($links, $deactivate_key, 0, $settings_link . ' | <span class="loader-nonce" data-nonce="' . $nonce . '"></span>'); // Add nonce to the links
     } else {
-        $links[] = $settings_link;
+        $links[] = $settings_link . ' | <span class="loader-nonce" data-nonce="' . $nonce . '"></span>'; // Add nonce to the links
     }
     return $links;
 }
@@ -53,10 +58,17 @@ function algo_site_loaders_add_settings_link($links) {
 /*
  * Save Loader to the Database option tables
  * Add AJAX action for saving loader options
+ * Add nonce verification to your AJAX callback function algo_site_save_loader_options
  */
 add_action('wp_ajax_save_loader_options', 'algo_site_save_loader_options');
 function algo_site_save_loader_options(): void
 {
+    // Verify nonce
+    if (!isset($_POST['asl_nonce']) || !wp_verify_nonce($_POST['asl_nonce'], 'algo_site_loaders_nonce')) {
+        wp_send_json_error('Error: Unauthorized request.');
+        return;
+    }
+
     if (isset($_POST['asl_selectedLoader']) || isset($_POST['asl_selectedColor'])) {
 
         $selectedLoader = sanitize_text_field($_POST['asl_selectedLoader']);

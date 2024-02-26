@@ -108,8 +108,8 @@
     border-radius: 50%;
     display: none;
     position: absolute;
-    top: 40%;
-    right: 20%;
+    top: 50%;
+    right: 40%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     border: 10px dashed #f3f3f3;
@@ -122,8 +122,8 @@
     border-radius: 50%;
     display: none;
     position: absolute;
-    top: 40%;
-    right: 20%;
+    top: 50%;
+    right: 40%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     border: 10px dotted #36c4d6;
@@ -158,6 +158,9 @@
     border-radius: 2px;
     border: 1px solid;
     margin: 2rem 0;
+}
+.wp-sites-loader-options-cards{
+    position: relative;
 }
 .wp-sites-loader-options-cards h1, .wp-sites-loaders-titles h1 {
     text-align: center;

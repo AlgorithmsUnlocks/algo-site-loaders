@@ -1,5 +1,5 @@
 <!-- WP Sites Loaders About Page -->
-
+<?php if (!defined('ABSPATH')) exit();  ?>
 <div class="wp-sites-loader-container">
 
     <?php
@@ -38,3 +38,4 @@
 
     </div>
 </div>
+<span class="loader-nonce" data-nonce="<?php echo wp_create_nonce('algo_site_loaders_nonce'); ?>"></span>

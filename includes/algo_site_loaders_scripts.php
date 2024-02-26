@@ -2,6 +2,8 @@
 /*
  * Load JS for plugins admin panel
  */
+if (!defined('ABSPATH')) exit();
+
 add_action('admin_enqueue_scripts', 'algo_site_loaders_admin_scripts');
 function algo_site_loaders_admin_scripts($hook)
 {

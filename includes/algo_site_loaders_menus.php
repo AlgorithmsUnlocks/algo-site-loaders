@@ -4,6 +4,8 @@
  * Algo Site Loaders Menu for plugins
  */
 
+if (!defined('ABSPATH')) exit();
+
 add_action('admin_menu', 'algo_site_loaders_admin_menu', 10,2);
 function algo_site_loaders_admin_menu()
 {

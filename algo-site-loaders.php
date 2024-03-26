@@ -37,18 +37,16 @@ $filter_name = 'plugin_action_links_' . plugin_basename(__FILE__);
 add_filter($filter_name, 'algo_site_loaders_add_settings_link');
 function algo_site_loaders_add_settings_link($links) {
     $settings_url = esc_url(admin_url('admin.php?page=algo_site_loaders'));
-    $settings_text = esc_html__('Dashboard', 'algo_site_loaders');
+    $settings_text = esc_html__('Dashboard', 'algo-site-loaders');
     $settings_link = '<a href="' . $settings_url . '">' . $settings_text . '</a>';
 
     // Create nonce
     $nonce = wp_create_nonce('algo_site_loaders_nonce');
-    echo "<script> console.log($nonce); </script>";
-
 
     $deactivate_key = array_search('deactivate', array_keys($links));
 
     if ($deactivate_key !== false) {
-        array_splice($links, $deactivate_key, 0, $settings_link . ' | <span class="loader-nonce" data-nonce="' . $nonce . '"></span>'); // Add nonce to the links
+        array_splice($links, $deactivate_key, 0, $settings_link . ' <span class="loader-nonce" data-nonce="' . $nonce . '"></span>'); // Add nonce to the links
     } else {
         $links[] = $settings_link . ' | <span class="loader-nonce" data-nonce="' . $nonce . '"></span>'; // Add nonce to the links
     }
@@ -64,23 +62,21 @@ add_action('wp_ajax_save_loader_options', 'algo_site_save_loader_options');
 function algo_site_save_loader_options(): void
 {
     // Verify nonce
-    if (!isset($_POST['asl_nonce']) || !wp_verify_nonce($_POST['asl_nonce'], 'algo_site_loaders_nonce')) {
+    $nonce = isset($_POST['algo_site_loaders_nonce']) ? sanitize_text_field(wp_unslash($_POST['algo_site_loaders_nonce'])) : '';
+
+    if (!wp_verify_nonce($nonce, 'algo_site_loaders_nonce')) {
         wp_send_json_error('Error: Unauthorized request.');
         return;
     }
 
-    if (isset($_POST['asl_selectedLoader']) || isset($_POST['asl_selectedColor'])) {
+    $selectedLoader = isset($_POST['algo_site_loaders_selectedLoader']) ? sanitize_text_field($_POST['algo_site_loaders_selectedLoader']) : '';
+    $selectedColor = isset($_POST['algo_site_loaders_selectedColor']) ? sanitize_text_field($_POST['algo_site_loaders_selectedColor']) : '';
 
-        $selectedLoader = sanitize_text_field($_POST['asl_selectedLoader']);
-        update_option('asl_selectedLoader', $selectedLoader);
-        $response = 'Loader Save Successfully';
-        $status_code = 200;
-        wp_send_json_success($selectedLoader, $response, $status_code);
-
+    if (!empty($selectedLoader)) {
+        update_option('algo_site_loaders_selectedLoader', $selectedLoader);
+        wp_send_json_success('Loader saved successfully.', $selectedLoader);
     } else {
-
         wp_send_json_error('Error: Missing data.');
-
     }
 }
 

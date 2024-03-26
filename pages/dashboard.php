@@ -34,7 +34,7 @@
             <div id="wp-sites-loader2" class="" style="display: none;"> </div>
             <div id="saveMessage" class="wp-sites-loader-save-message" style="display: block;"> Activated Loader:
                 <?php
-                $wpSiteLoaders = get_option('asl_selectedLoader');
+                $wpSiteLoaders = get_option('algo_site_loaders_selectedLoader');
                 echo esc_html($wpSiteLoaders);
                 ?>
             </div>
@@ -58,5 +58,5 @@
     </div>
 </div>
 
-<span class="loader-nonce" data-nonce="<?php echo wp_create_nonce('algo_site_loaders_nonce'); ?>"></span>
+<span class="loader-nonce" data-nonce="<?php echo esc_attr(wp_create_nonce('algo_site_loaders_nonce')); ?>"></span>
 

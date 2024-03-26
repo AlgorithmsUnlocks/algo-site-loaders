@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const messageElement = document.getElementById('saveMessage');
     const wpSitesloaderName = document.getElementById('wpSitesloaderName');
 
-    const savedLoader = localStorage.getItem('asl_selectedLoader');
-    const savedColor = localStorage.getItem('asl_selectedColor');
+    const savedLoader = localStorage.getItem('algo_site_loaders_selectedLoader');
+    const savedColor = localStorage.getItem('algo_site_loaders_selectedColor');
 
     if (savedLoader && savedColor) {
         showSelectedLoader(savedLoader);
@@ -114,12 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Prepare data to send in the AJAX request
         const data = new URLSearchParams();
         data.append('action', 'save_loader_options');
-        data.append('asl_selectedLoader', selectedLoader);
-        data.append('asl_selectedColor', selectedColor);
+        data.append('algo_site_loaders_selectedLoader', selectedLoader);
+        data.append('algo_site_loaders_selectedColor', selectedColor);
 
         // Add nonce
         const nonce = document.querySelector('.loader-nonce').getAttribute('data-nonce');
-        data.append('asl_nonce', nonce);
+        data.append('algo_site_loaders_nonce', nonce);
 
         xhr.send(data);
     }

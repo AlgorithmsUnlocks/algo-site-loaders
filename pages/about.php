@@ -38,4 +38,4 @@
 
     </div>
 </div>
-<span class="loader-nonce" data-nonce="<?php echo wp_create_nonce('algo_site_loaders_nonce'); ?>"></span>
+<span class="loader-nonce" data-nonce="<?php echo esc_attr(wp_create_nonce('algo_site_loaders_nonce')); ?>"></span>
